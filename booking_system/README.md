@@ -724,3 +724,6 @@ negative_answers = {'нет', 'no'}
 
 В перспективе: работа с датами, разделение проекта на функции, адаптация под Telegram-бота.
 
+
+
+<img width="1547" height="965" alt="image" src="https://github.com/user-attachments/assets/ce82a6e2-fedf-4608-b842-e07540ed7266" />
