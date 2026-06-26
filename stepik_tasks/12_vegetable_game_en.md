@@ -207,3 +207,20 @@ This project is not about building a complex game.
 For me, it became a small story of learning, where the most valuable part wasn't the number of lines of code, but the process of experimenting, solving problems, and making small discoveries that gradually change the way I think about programming.
 
 ---
+## 💭 Personal Note
+
+While learning Python, I've noticed something interesting about myself.
+
+Most beginner exercises don't require input validation yet, and I completely understand that the course introduces new concepts step by step.
+
+But I almost can't resist leaving a program completely unprotected.
+
+Whenever I accidentally break my own program during testing, I immediately want to find the simplest solution that I can already understand and apply with my current level of knowledge.
+
+At the time I created this project, we hadn't yet covered input validation, data validation, or proper error handling in the course. Everything used here comes from small pieces of knowledge that I picked up on my own by asking questions, experimenting, and gradually exploring new Python features.
+
+I'm not trying to jump ahead or use advanced techniques that I don't fully understand yet. Instead, I enjoy finding small, practical solutions that match my current level of knowledge—solutions that I truly understand instead of simply copying.
+
+I don't want to turn every small learning exercise into a large project. But if I already know a simple way to make a program a little more reliable and user-friendly, I always feel like giving it a try.
+
+I'm beginning to realize that looking for edge cases, thinking about different user scenarios, and making programs a little more robust are gradually becoming part of the way I learn programming.
