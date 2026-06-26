@@ -1,0 +1,211 @@
+#  Vegetable Game
+
+Этот проект состоит из четырёх связанных заданий курса Stepik.
+
+Каждое новое задание постепенно развивает предыдущее, поэтому в итоге из обычного учебного упражнения получилась небольшая консольная игра.
+
+Именно эта идея мне очень понравилась — не начинать каждый раз всё с нуля, а постепенно улучшать уже существующий проект.
+
+## 🌱 Версия 1
+
+Первая версия знакомит с модулем `random`.
+
+Программа случайным образом выбирает овощи и формирует небольшой урожай.
+
+```python
+import random
+
+ingredient = ['огурец', 'помидор', 'лук', 'перец']
+
+my_vegetables = []
+
+for _ in range(6):
+    vegetable = random.choice(ingredient)
+    my_vegetables.append(vegetable)
+    print("Вы получили:", vegetable)
+
+print("Мы собрали:", my_vegetables)
+```
+
+## 🥗 Версия 2
+
+Во второй версии появляются выигрышные комбинации.
+
+Теперь программа не просто показывает случайные овощи, а проверяет, удалось ли собрать один из нужных наборов.
+
+```python
+for _ in range(6):
+    vegetable = random.choice(ingredient)
+    my_vegetables.append(vegetable)
+    print("Вы получили:", vegetable)
+    
+print("Мы собрали:", my_vegetables)
+
+cucumber_count = my_vegetables.count('огурец')
+tomato_count = my_vegetables.count('помидор')
+pepper_count = my_vegetables.count('перец')
+onion_count = my_vegetables.count('лук')
+
+first_combo = cucumber_count > 1  and tomato_count > 0
+  
+second_combo = (
+  cucumber_count > 0 and tomato_count > 0 
+  and pepper_count > 0 and onion_count > 0
+  )
+  
+if first_combo or second_combo: 
+    print("О великий игрок, вы повелитель овощей!")
+    
+else:                  
+    print("Увы, вам не повезло!")
+```
+
+## 🎮 Версия 3
+
+Следующим этапом становится взаимодействие с пользователем.
+
+Игрок выбирает один из трёх мешков, каждый из которых содержит свой набор возможных овощей. Благодаря этому игра становится более интересной и разнообразной.
+
+```python
+import random
+
+my_vegetables = []
+
+bag1 = 'огурец', 'помидор'              # мешок - из него может выпасть: огурец или помидор
+bag2 = 'перец', 'лук'                  # мешок - из него может выпасть: перец или лук
+bag3 = 'помидор', 'перец'               # мешок - из него может выпасть: помидор или перец
+
+for _ in range(6):
+    print("Наш текущий набор:", my_vegetables)
+    
+    selected_player = int(input())            # Номер мешка
+    
+    if selected_player == 1:
+        vegetable = random.choice(bag1)
+        
+    elif selected_player == 2:
+        vegetable = random.choice(bag2)
+        
+    else:
+        vegetable = random.choice(bag3)
+        
+    print("Вы получили:", vegetable)
+    my_vegetables.append(vegetable)
+    
+print("Мы собрали:", my_vegetables)
+```
+
+## 🛡 Версия 4
+
+Это единственная часть проекта, которую я решила улучшить самостоятельно.
+
+Во время тестирования программы в Python IDLE я случайно нажала **Enter**, не введя число.
+
+Программа сразу выдала  ошибку.
+
+Именно в этот момент я поняла, что даже небольшая учебная программа должна уметь хотя бы минимально защищаться от неправильного ввода.
+
+Так как это просто учебная задача на степик, я стала искать самое простое решение, которое не утяжелит слишком задание.
+
+Так я впервые познакомилась с конструкцией `try / except` и добавила базовую обработку ошибок, чтобы программа не завершалась аварийно при некорректном вводе.
+
+```python
+import random
+
+my_vegetables = []
+
+bag1 = 'огурец', 'помидор'              # мешок - из него может выпасть: огурец или помидор
+bag2 = 'перец', 'лук'                  # мешок - из него может выпасть: перец или лук
+bag3 = 'помидор', 'перец'               # мешок - из него может выпасть: помидор или перец
+
+for _ in range(6):
+    print("Наш текущий набор:", my_vegetables)
+          
+    try: 
+        selected_player = int(input())            # Номер мешка
+    except ValueError:
+        print("Нужно ввести число!")
+        continue
+          
+    if selected_player == 1:
+        vegetable = random.choice(bag1)
+        
+    elif selected_player == 2:
+        vegetable = random.choice(bag2)
+        
+    elif selected_player == 3:
+        vegetable = random.choice(bag3)
+          
+    else:
+        print("Такого мешка нет!")
+        continue
+        
+    print("Вы получили:", vegetable)
+    my_vegetables.append(vegetable)
+    
+print("Мы собрали:", my_vegetables)
+
+cucumber_count = my_vegetables.count('огурец')
+tomato_count = my_vegetables.count('помидор')
+pepper_count = my_vegetables.count('перец')
+onion_count = my_vegetables.count('лук')
+
+first_combo = cucumber_count > 2  and tomato_count > 0
+  
+second_combo = (
+  cucumber_count > 0 and tomato_count > 0 
+  and pepper_count > 0 and onion_count > 0
+  )
+
+third_combo = tomato_count > 1 and pepper_count > 1
+
+combos = [
+    first_combo,
+    second_combo, 
+    third_combo
+] 
+
+if any(combos): 
+    print("О великий игрок, вы повелитель овощей!")
+    
+else:                  
+    print("Увы, вам не повезло!")
+```
+
+Во время работы над этим проектом произошло ещё одно небольшое, но очень приятное открытие.
+
+Сначала проверка выигрышных комбинаций выглядела так:
+
+```python
+if first_combo or second_combo
+```
+
+затем стало:
+
+```python
+if first_combo or second_combo or third_combo:
+```
+
+И я задумалась:
+
+> «А что если однажды комбинаций станет пять или десять? Не может такого быть, что придётся каждый раз дописывать ещё одно `or`? Должно, что то быть другое, захотелось написать "any"»
+
+Я начала искать способ сказать Python:
+
+> «Если истинна **любая** из этих комбинаций...»
+
+И с улыбкой обнаружила, что такой инструмент уже давно существует:
+
+```python
+if any(combos):
+```
+
+Это был один из тех маленьких моментов, когда понимаешь, насколько красиво и продуманно устроен Python.
+
+---
+
+Этот проект — не про сложную игру.
+
+Для меня он стал маленькой историей обучения, в которой особенно ценно не количество строк кода, а процесс поиска решений, экспериментов и небольших открытий, которые постепенно меняют взгляд на программирование.
+
+---
